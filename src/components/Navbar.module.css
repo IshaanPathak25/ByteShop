@@ -1,0 +1,180 @@
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: var(--nav-height);
+  background: rgba(10, 10, 15, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-base);
+}
+
+.scrolled {
+  background: rgba(10, 10, 15, 0.95);
+  border-bottom-color: var(--clr-border);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  height: var(--nav-height);
+  gap: var(--space-8);
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+.logoIcon {
+  width: 38px; height: 38px;
+  background: var(--clr-accent);
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  box-shadow: var(--shadow-accent);
+  transition: transform var(--transition-spring);
+}
+.logo:hover .logoIcon { transform: scale(1.08) rotate(-3deg); }
+.logoText {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--text-xl);
+  color: var(--clr-text);
+  letter-spacing: -0.03em;
+}
+
+/* Nav Links */
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex: 1;
+  justify-content: center;
+}
+.link {
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--clr-text-2);
+  transition: all var(--transition-fast);
+  position: relative;
+}
+.link:hover { color: var(--clr-text); }
+.active {
+  color: var(--clr-accent-light);
+  background: var(--clr-accent-glow);
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* Cart Button */
+.cartBtn {
+  position: relative;
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--clr-text-2);
+  transition: all var(--transition-fast);
+  background: transparent;
+  border: 1px solid var(--clr-border);
+}
+.cartBtn:hover { color: var(--clr-text); background: var(--clr-surface); border-color: var(--clr-border-hover); }
+.cartBadge {
+  position: absolute;
+  top: -6px; right: -6px;
+  background: var(--clr-accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px; height: 18px;
+  border-radius: var(--radius-full);
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--clr-bg);
+  animation: fadeIn 0.2s ease;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  padding: var(--space-2);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--clr-border);
+  transition: all var(--transition-fast);
+}
+.hamburger:hover { background: var(--clr-surface); }
+.bar {
+  display: block;
+  width: 100%; height: 2px;
+  background: var(--clr-text-2);
+  border-radius: 1px;
+  transition: all var(--transition-base);
+  transform-origin: center;
+}
+.barOpen1 { transform: translateY(7px) rotate(45deg); }
+.barOpen2 { opacity: 0; transform: scaleX(0); }
+.barOpen3 { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile Menu */
+.mobileMenu {
+  position: fixed;
+  top: var(--nav-height);
+  left: 0; right: 0;
+  background: var(--clr-bg-2);
+  border-bottom: 1px solid var(--clr-border);
+  z-index: 999;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-base);
+  padding: var(--space-4) var(--space-6) var(--space-6);
+}
+.mobileMenuOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: all;
+}
+.mobileLinks { display: flex; flex-direction: column; gap: var(--space-1); margin-bottom: var(--space-4); }
+.mobileLink {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-base);
+  font-weight: 500;
+  color: var(--clr-text-2);
+  transition: all var(--transition-fast);
+}
+.mobileLink:hover { color: var(--clr-text); background: var(--clr-surface); }
+.mobileLinkActive { color: var(--clr-accent-light); background: var(--clr-accent-glow); }
+.mobileActions { display: flex; gap: var(--space-3); }
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 998;
+  backdrop-filter: blur(4px);
+}
+
+@media (max-width: 768px) {
+  .links { display: none; }
+  .hamburger { display: flex; }
+  .actions > a:last-of-type { display: none; } /* Hide Book Repair on mobile */
+}
